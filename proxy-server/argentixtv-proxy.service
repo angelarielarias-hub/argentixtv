@@ -1,0 +1,16 @@
+[Unit]
+Description=ArgentixTV Proxy Argentina
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/argentixtv-proxy
+ExecStart=/usr/bin/node /opt/argentixtv-proxy/server.js
+Restart=always
+RestartSec=5
+Environment=PORT=3000
+Environment=UPSTREAM_TIMEOUT_MS=25000
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target

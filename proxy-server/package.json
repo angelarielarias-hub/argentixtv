@@ -1,0 +1,18 @@
+{
+  "name": "argentixtv-proxy-argentina",
+  "version": "2.3.0",
+  "private": true,
+  "description": "Proxy HLS/M3U8 para ArgentixTV pensado para VPS con IP argentina.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.18.3",
+    "compression": "^1.7.4",
+    "helmet": "^7.1.0"
+  }
+}

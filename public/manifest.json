@@ -1,0 +1,11 @@
+{
+  "name": "ArgentixTV",
+  "short_name": "ArgentixTV",
+  "description": "Televisión argentina para uso familiar",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#080810",
+  "theme_color": "#080810",
+  "orientation": "landscape"
+}

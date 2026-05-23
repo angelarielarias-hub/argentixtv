@@ -1,0 +1,13 @@
+{
+  "name": "argentixtv-netlify",
+  "version": "2.3.0",
+  "private": true,
+  "description": "ArgentixTV con frontend Netlify, proxy externo para VPS Argentina y carga M3U/Xtream.",
+  "scripts": {
+    "deploy:preview": "netlify deploy --dir=public --functions=netlify/functions",
+    "deploy:prod": "netlify deploy --prod --dir=public --functions=netlify/functions"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
