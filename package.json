@@ -5,9 +5,14 @@
   "description": "ArgentixTV con frontend Netlify, proxy externo para VPS Argentina y carga M3U/Xtream.",
   "scripts": {
     "deploy:preview": "netlify deploy --dir=public --functions=netlify/functions",
-    "deploy:prod": "netlify deploy --prod --dir=public --functions=netlify/functions"
+    "deploy:prod": "netlify deploy --prod --dir=public --functions=netlify/functions",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "wrangler": "^4.94.0"
   }
 }
