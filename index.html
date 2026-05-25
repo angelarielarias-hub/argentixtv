@@ -418,7 +418,12 @@ let DB = loadDB();
 
 const SETTINGS_KEY = 'atv_settings_v1';
 const ON_NETLIFY = !['localhost','127.0.0.1'].includes(location.hostname) && !location.hostname.match(/^192\.|^10\.|^172\./);
-const NETLIFY_PROXY = '/.netlify/functions/proxy?url=';
+const NETLIFY_PROXY = (function(){
+  // Auto-detect: Cloudflare Workers uses /functions/proxy, Netlify uses /.netlify/functions/proxy
+  const host = window.location.hostname;
+  if(host.includes('workers.dev') || host.includes('pages.dev')) return '/functions/proxy?url=';
+  return '/.netlify/functions/proxy?url=';
+})();
 
 function normalizeProxyBase(v){
   let s=String(v||'').trim();
@@ -449,7 +454,7 @@ function proxyCandidates(url){
   out.push(url);
   return [...new Set(out)];
 }
-function proxyLabel(){return customProxyBase() ? 'Proxy Argentina externo' : (ON_NETLIFY ? 'Proxy Netlify' : 'Local sin proxy');}
+function proxyLabel(){return customProxyBase() ? 'Proxy Argentina externo' : (ON_NETLIFY ? (window.location.hostname.includes('workers.dev') || window.location.hostname.includes('pages.dev') ? 'Proxy CF' : 'Proxy Netlify') : 'Local sin proxy');}
 
 // ════════════════════════════════════════
 // STATE
@@ -896,7 +901,7 @@ async function fetchM3U(url){
       const t=await res.text();
       if(!t) continue;
       if(t.includes('#EXTINF')){text=t;break;}
-      if(t.includes('/proxy?url=') || t.includes('.netlify/functions/proxy?url=')){
+      if(t.includes('/proxy?url=') || (t.includes('.netlify/functions/proxy?url=') || t.includes('/functions/proxy?url='))){
         const fixed=t.split(/\r?\n/).map(line=>{
           const m=line.match(/(?:\/proxy|\.netlify\/functions\/proxy)\?url=(.+)$/);
           return m?decodeURIComponent(m[1]):line;
@@ -1018,7 +1023,7 @@ document.getElementById('btnchpass').addEventListener('click',()=>{
 // PWA
 // ════════════════════════════════════════
 // ── VERSION TRACKING ──
-const APP_VERSION = '2.3.5';
+const APP_VERSION = '2.3.6';
 const APP_BUILD = '2026-05-25';
 
 function getVersion(){
