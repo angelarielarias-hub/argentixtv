@@ -1,0 +1,16 @@
+#EXTM3U
+
+#EXTINF:-1 tvg-id="Canal4SanJuan.ar" group-title="San Juan",Canal 4 San Juan
+https://streamlov.alsolnet.com/canal4sanjuan/live/playlist.m3u8
+
+#EXTINF:-1 tvg-id="Canal34SanJuan.ar" group-title="San Juan",Canal 34 San Juan
+https://streamyes.alsolnet.com/canal34hd/live/playlist.m3u8
+
+#EXTINF:-1 tvg-id="Canal40Caucete.ar" group-title="San Juan",Canal 40 Caucete
+https://canalsj.kozow.com/canal40/index.fmp4.m3u8
+
+#EXTINF:-1 tvg-id="Canal79SanJuan.ar" group-title="San Juan",Canal 79 San Juan
+https://streamconex.com:1936/sanjuan/sanjuan/playlist.m3u8
+
+#EXTINF:-1 tvg-id="Telesol.ar" group-title="San Juan",Telesol San Juan
+https://cnnsanjuan.com:9999/live/telesol/playlist.m3u8
