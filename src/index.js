@@ -103,16 +103,33 @@ async function handleProxy(request) {
 }
 
 function buildUpstreamHeaders(request, targetUrl) {
+  const referer = getRefererForTarget(targetUrl);
   const headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36',
     'Accept': '*/*',
-    'Referer': `${targetUrl.origin}/`,
+    'Referer': referer,
+    'Origin': new URL(referer).origin,
   };
 
   const range = request.headers.get('Range');
   if (range) headers.Range = range;
 
   return headers;
+}
+
+function getRefererForTarget(targetUrl) {
+  const host = targetUrl.hostname.toLowerCase();
+  const path = targetUrl.pathname.toLowerCase();
+
+  if (host.includes('tvlin.net') && path.includes('/telesol/')) {
+    return 'https://www.telesoldiario.com/';
+  }
+
+  if (host.includes('telesoldiario.com')) {
+    return 'https://www.telesoldiario.com/';
+  }
+
+  return `${targetUrl.origin}/`;
 }
 
 function rewriteM3U8(text, sourceUrl, origin) {
