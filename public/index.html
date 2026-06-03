@@ -213,7 +213,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
         <div style="width:80px;height:80px;border-radius:16px;background:rgba(255,0,0,.15);border:2px solid rgba(255,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:36px;">&#9654;</div>
         <div id="yts-name" style="font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;color:var(--accent);letter-spacing:2px;text-align:center;">Canal 13 San Juan</div>
         <div id="yts-prov" style="font-size:12px;color:var(--muted);letter-spacing:2px;text-align:center;">San Juan</div>
-        <div id="yts-desc" style="font-size:13px;color:var(--muted);text-align:center;max-width:380px;line-height:1.7;">Este canal se abre desde una fuente oficial externa.<br>La app queda abierta y no usa proxy Netlify.</div>
+        <div id="yts-desc" style="font-size:13px;color:var(--muted);text-align:center;max-width:380px;line-height:1.7;">Este canal se abre desde una fuente oficial externa.<br>La app queda abierta y no usa Proxy CF.</div>
         <button id="yts-btn" onclick="openYTSplash()" style="background:#ff0000;color:#fff;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;padding:14px 32px;border:none;border-radius:10px;cursor:pointer;">&#9654; VER EN VIVO</button>
         <div id="yts-foot" style="font-size:11px;color:#404060;text-align:center;">Se abrirá en una nueva pestaña</div>
       </div>
@@ -454,7 +454,7 @@ function proxyCandidates(url){
   out.push(url);
   return [...new Set(out)];
 }
-function proxyLabel(){return customProxyBase() ? 'Proxy Argentina externo' : (ON_NETLIFY ? (window.location.hostname.includes('workers.dev') || window.location.hostname.includes('pages.dev') ? 'Proxy CF' : 'Proxy Netlify') : 'Local sin proxy');}
+function proxyLabel(){return customProxyBase() ? 'Proxy Argentina externo' : (ON_NETLIFY ? (window.location.hostname.includes('workers.dev') || window.location.hostname.includes('pages.dev') ? 'Proxy CF' : 'Proxy CF') : 'Local sin proxy');}
 
 // ════════════════════════════════════════
 // STATE
@@ -515,7 +515,7 @@ function initApp(){
 
   const ps=document.getElementById('pxstat');
   if(customProxyBase()){ps.textContent='✓ Proxy AR';ps.className='off';ps.classList.add('ok');}
-  else if(ON_NETLIFY){ps.textContent='✓ Proxy Netlify';ps.className='off';ps.classList.add('ok');}
+  else if(ON_NETLIFY){ps.textContent='✓ Proxy CF';ps.className='off';ps.classList.add('ok');}
   else{ps.textContent='⚠ Local (sin proxy)';ps.className='off';}
 
   // Load saved playlists
@@ -973,7 +973,7 @@ function refreshProxyBadge(){
   const ps=document.getElementById('pxstat');
   if(!ps) return;
   if(customProxyBase()){ps.textContent='✓ Proxy AR';ps.className='off';ps.classList.add('ok');}
-  else if(ON_NETLIFY){ps.textContent='✓ Proxy Netlify';ps.className='off';ps.classList.add('ok');}
+  else if(ON_NETLIFY){ps.textContent='✓ Proxy CF';ps.className='off';ps.classList.add('ok');}
   else{ps.textContent='⚠ Local (sin proxy)';ps.className='off';}
   const ip=document.getElementById('infoproxy');
   if(ip) ip.textContent=proxyLabel();
@@ -1005,7 +1005,7 @@ document.getElementById('btnresetproxy').addEventListener('click',()=>{
   SETTINGS.proxyBase='';saveSettings(SETTINGS);
   document.getElementById('proxybase').value='';
   refreshProxyBadge();
-  const st=document.getElementById('proxyst');st.textContent='Restablecido: proxy Netlify/local.';st.style.color='var(--muted)';
+  const st=document.getElementById('proxyst');st.textContent='Restablecido: Proxy CF/local.';st.style.color='var(--muted)';
 });
 
 // change pass
