@@ -981,7 +981,7 @@ function refreshProxyBadge(){
 async function testActiveProxy(){
   const st=document.getElementById('proxyst');
   const base=customProxyBase();
-  if(!base){st.textContent='No hay proxy externo configurado. Se usará Netlify como fallback.';st.style.color='var(--muted)';return;}
+  if(!base){st.textContent='No hay proxy externo configurado. Se usará Cloudflare como fallback.';st.style.color='var(--muted)';return;}
   st.textContent='Probando proxy…';st.style.color='var(--accent)';
   try{
     const res=await fetch(base+encodeURIComponent('https://example.com/'),{cache:'no-store'});
