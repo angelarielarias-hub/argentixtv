@@ -997,7 +997,7 @@ document.getElementById('btnsaveproxy').addEventListener('click',()=>{
   SETTINGS.proxyBase=val;saveSettings(SETTINGS);
   document.getElementById('proxybase').value=val;
   refreshProxyBadge();
-  st.textContent=val?'✓ Proxy guardado. Los canales nuevos y la reproducción usarán esta salida.':'Proxy externo vacío. Se usará Netlify/local.';
+  st.textContent=val?'✓ Proxy guardado. Los canales nuevos y la reproducción usarán esta salida.':'Proxy externo vacío. Se usará Cloudflare/local.';
   st.style.color=val?'var(--success)':'var(--muted)';
 });
 document.getElementById('btntestproxy').addEventListener('click',testActiveProxy);
